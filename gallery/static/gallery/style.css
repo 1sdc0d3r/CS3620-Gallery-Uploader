@@ -20,14 +20,21 @@ form button:hover, form button:active {
   border-color: pink;
 }
 
-ul {
-  list-style: none;
+.container {
+  margin-top: 2em;
   padding-left: 0px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-}
-ul img {
-  border: 2px solid red;
-  margin: 0 1em;
   width: 80%;
+  flex-wrap: wrap;
+}
+.container img {
+  border: 5px solid red;
+  margin: 0 1em;
+  width: 20em;
+}
+
+#history {
+  font-size: 3em;
 }/*# sourceMappingURL=style.css.map */

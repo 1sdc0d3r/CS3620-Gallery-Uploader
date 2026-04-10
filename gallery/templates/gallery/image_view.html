@@ -26,8 +26,12 @@
     </form>
 {% endif %} -->
 <img src="{{ img.img.url }}" alt="image" width="240px"/>
-{% if comment %}
-    <p>{{ comment }}</p>
+{% if comments %}
+<ul>
+    {% for c in comments %}
+        <li>{{ c }}</li>
+    {% endfor %}
+</ul>
 {% endif %}
 <form action="comment/" method="POST">
     {% csrf_token %}

@@ -21,15 +21,22 @@ form{
     }
 }
 
-ul{
-    list-style: none;
+.container{
+    margin-top: 2em;
     padding-left: 0px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    width: 80%;
+    flex-wrap: wrap;
 
     img{
-        border: 2px solid red;
+        border: 5px solid red;
         margin:0 1em;
-        width: 80%;
+        width: 20em;
     }
+}
+
+#history{
+    font-size: 3em
 }

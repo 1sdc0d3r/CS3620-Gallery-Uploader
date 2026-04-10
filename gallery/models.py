@@ -6,4 +6,4 @@ from django.db import models
 class Image(models.Model):
     # img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
     img = models.ImageField(upload_to='images')
-    tags = models.CharField(max_length=255)
+    tags = models.CharField(max_length=255, default="")

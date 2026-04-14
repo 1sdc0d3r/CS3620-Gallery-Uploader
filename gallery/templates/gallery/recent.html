@@ -1,0 +1,14 @@
+{% extends 'gallery/base.html' %}
+{% block title %}Gallery{% endblock %}
+{%block content%}
+
+<div class="container">
+  {% for img in images %}
+  <!-- <li>{{review.user_name}} (Rating: {{review.rating}})</li> -->
+    <!-- img(for).img(model field name).url(path) -->
+     <a href="{{ img.pk }}">
+      <img src="{{ img.img.url }}" alt="image" />
+     </a>
+     {% endfor %}
+    </div>
+{% endblock %}

@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView
 from django.views import View
 from django.http import HttpResponseRedirect
 from .models import Image
+from os.path import basename
 
 
 class UploadImageFormView(CreateView):
@@ -11,6 +12,20 @@ class UploadImageFormView(CreateView):
     model = Image
     fields = '__all__'
     success_url = '/'
+    # print(self.request)
+    # def post(self,req):
+    #     # print("post img: ", req)
+    #     return HttpResponseRedirect("/")
+    def form_valid(self, form):
+        img_name = form.cleaned_data.get('img').name.replace(" ", "_")
+        recent_session=self.request.session.get(f"recent") or []
+        # if not isinstance(recent_session, list):
+        #     self.request.session['recent'] = []
+        if img_name not in recent_session:
+            self.request.session['recent'] = [*recent_session, img_name]
+
+        return super().form_valid(form)
+
 
 
 class GalleryListView(ListView):
@@ -82,3 +97,26 @@ class AddComment(View):
         request.session["comments"] = session_comments
 
         return HttpResponseRedirect("/" + img_id)
+
+class RecentListView(ListView):
+    template_name = 'gallery/recent.html'
+    model = Image
+    context_object_name = 'images'
+
+    def get_context_data(self, **kwargs) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        context["recent"] = self.request.session.get('recent')
+        return context
+
+    def get_queryset(self):
+        query_set=super().get_queryset()
+        # print("before", query_set)
+        recents = self.request.session.get('recent') or []
+        # print("last: ", recents[-1], "|")
+        # img1=query_set[len(query_set)-1].img.name
+        # print("img1: ",img1[img1.find('/')+1:], "|")
+        # print(img1 in recents)
+        
+        query_set =[img for img in query_set if img.img.name[img.img.name.find("/")+1:] in recents]
+
+        return query_set

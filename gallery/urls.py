@@ -6,5 +6,6 @@ urlpatterns = [
     path("", views.GalleryListView.as_view()),
     path("upload/", views.UploadImageFormView.as_view()),
     path("comment/", views.AddComment.as_view()),
-    path("<int:pk>", views.ImageDetailView.as_view())
+    path("<int:pk>", views.ImageDetailView.as_view()),
+    path("recent/", views.RecentListView.as_view()),
 ]

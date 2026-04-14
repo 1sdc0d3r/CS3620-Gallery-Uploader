@@ -26,14 +26,16 @@ form{
     padding-left: 0px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
+    // justify-content: space-between;
+    justify-content: flex-start;
+    width: 100%;
     flex-wrap: wrap;
 
     img{
         border: 5px solid red;
         margin:0 1em;
         width: 20em;
+        height: 20em;
     }
 }
 

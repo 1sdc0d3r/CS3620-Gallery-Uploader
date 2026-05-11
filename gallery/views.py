@@ -116,7 +116,7 @@ class RecentListView(ListView):
         # img1=query_set[len(query_set)-1].img.name
         # print("img1: ",img1[img1.find('/')+1:], "|")
         # print(img1 in recents)
-        
+
         query_set =[img for img in query_set if img.img.name[img.img.name.find("/")+1:] in recents]
 
         return query_set
